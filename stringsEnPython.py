@@ -67,8 +67,8 @@ print (id( 'C' ))
 print('>>> id( \'c\' )')
 print (id( 'c' ))
 
-country = 'México'
 print ('>>> country = \'México\'')
+country = 'México'
 
 print('>>> id(country)')
 print(id(country))

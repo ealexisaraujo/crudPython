@@ -1,52 +1,26 @@
->>> country = 'Colombia'
+>>> platzi = 'platzi'
+>>> platzi.upper()
+PLATZI
+>>> platzi.find('la')
+1
+>>> platzi.startswith('p')
+True
+>>> platzi.startswith('x')
+False
+>>> dir(platzi)
+['__add__', '__class__', '__contains__', '__delattr__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__getnewargs__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__iter__', '__le__', '__len__', '__lt__', '__mod__', '__mul__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__rmod__', '__rmul__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', 'capitalize', 'casefold', 'center', 'count', 'encode', 'endswith', 'expandtabs', 'find', 'format', 'format_map', 'index', 'isalnum', 'isalpha', 'isascii', 'isdecimal', 'isdigit', 'isidentifier', 'islower', 'isnumeric', 'isprintable', 'isspace', 'istitle', 'isupper', 'join', 'ljust', 'lower', 'lstrip', 'maketrans', 'partition', 'replace', 'rfind', 'rindex', 'rjust', 'rpartition', 'rsplit', 'rstrip', 'split', 'splitlines', 'startswith', 'strip', 'swapcase', 'title', 'translate', 'upper', 'zfill']
+>>>
+>>>
+>>>
+def my_function():
+...    """Este es un texto de ayuda de como utilizar esta funcion"""
+...    pass
+...    
+>>> help(my_function)
+Help on function my_function in module __main__:
 
->>> country[0]
-C
->>> country[1]
-o
->>> country[-1]
-a
->>> country[-2]
-i
->>> len(country)
-8
->>> country[0]
-C
->>> country[1]
-o
->>> country[2]
-l
->>> country[3]
-o
->>> country[4]
-m
->>> country[5]
-b
->>> country[6]
-i
->>> country[7]
-a
->>> country[1]
-o
->>> second_letter = country[1]
->>> print( second_letter )
-o
->>> id( second_letter )
-140375975117616
->>> other_var = 'o'
->>> id( other_var )
-140375975117616
->>> id( 'i' )
-140375975324720
->>> id( 'C' )
-140375975041776
->>> id( 'c' )
-140375975762864
->>> country = 'México'
->>> id(country)
-140375974214912
->>> country += 's'
->>> country
-Méxicos
->>> id(country)
-140375974215152
+====================================================================
+my_function()
+    Este es un texto de ayuda de como utilizar esta funcion
+
+====================================================================
