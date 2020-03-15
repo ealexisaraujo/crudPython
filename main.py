@@ -18,34 +18,36 @@ def list_clients():
     print(clients)
 
 
-def update_client():
-    client_name = _get_client_name()
-    updated_name = input('What is the new client name? ')
-    _update_client(client_name, updated_name)
-
-
-def _update_client(client_name, updated_name):
+def update_client(client_id, updated_client):
     global clients
 
-    if client_name in clients:
-        clients = clients.replace(client_name + ',', updated_name + ',')
+    if len(clients) - 1 >= client_id:
+        clients[client_id] = updated_client
     else:
         print('Client not in client\'s list')
 
-
-def delete_client():
-    client_name = _get_client_name()
-    _delete_client(client_name)
-
-
-def _delete_client(client_name):
+def delete_client(client_id):
     global clients
 
-    if client_name in clients:
-        clients = clients.replace(client_name + ',', '')
-    else:
-        print('Client not in client\'s list')
+    for idx, client in enumerate(clients):
+        if idx == client_id:
+            del clients[idx] 
+            break
 
+def search_client(client_name):
+    for client in clients:
+        if client['name'] != client_name:
+            continue
+        else:
+            return True
+
+def _get_client_field(field_name, message='What is the client {}?'):
+    field = None
+
+    while not field:
+        field = input(message.format(field_name))
+
+    return field
 
 def _add_comma():
     global clients
@@ -68,6 +70,7 @@ def _print_welcome():
     print('[L]ist clients')
     print('[U]pdate client')
     print('[D]elete client')
+    print('[S]earch client')
 
 
 def _show_clients_and_execute_command(command):
@@ -100,5 +103,13 @@ if __name__ == '__main__':
         _show_clients_and_execute_command(update_client)
     elif command == 'D':
         _show_clients_and_execute_command(delete_client)
+    elif command == 'S':
+        client_name = _get_client_field('name')
+        found = search_client(client_name)
+        
+        if found:
+            print('The client is in the client\'s list')
+        else:
+            print('The client: {} is not in our client\'s list'.format(client_name))
     else:
         print('Invalid command')
