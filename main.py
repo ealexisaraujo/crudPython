@@ -1,4 +1,4 @@
-VALID_COMMANDS = 'C,L,U'
+VALID_COMMANDS = 'C,L,U,D'
 
 
 clients = 'tomas,juan,'
@@ -32,6 +32,21 @@ def _update_client(client_name, updated_name):
     else:
         print('Client not in client\'s list')
 
+
+def delete_client():
+    client_name = _get_client_name()
+    _delete_client(client_name)
+
+
+def _delete_client(client_name):
+    global clients
+
+    if client_name in clients:
+        clients = clients.replace(client_name + ',', '')
+    else:
+        print('Client not in client\'s list')
+
+
 def _add_comma():
     global clients
 
@@ -52,6 +67,7 @@ def _print_welcome():
     print('[C]reate client')
     print('[L]ist clients')
     print('[U]pdate client')
+    print('[D]elete client')
 
 
 def _show_clients_and_execute_command(command):
@@ -82,6 +98,7 @@ if __name__ == '__main__':
         list_clients()
     elif command == 'U':
         _show_clients_and_execute_command(update_client)
-
+    elif command == 'D':
+        _show_clients_and_execute_command(delete_client)
     else:
         print('Invalid command')
