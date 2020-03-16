@@ -1,42 +1,73 @@
->>> my_name = 'Cristian'
+>>> countries = ['México','Venezuela', 'Colombia','Argentna']
+>>> ages = [12, 18, 24, 34, 50]
+>>> id(countries)
+140394847579184
+>>> id(ages)
+140394846190480
+>>> weights = [12, 18, 24, 34, 50]
+>>> id(weights)
+140394847080352
+>>> receta = ['Ensalda',2, 'lenguas',5,'Ajitomates']
+>>> countries
+['México', 'Venezuela', 'Colombia', 'Argentna']
+>>> countries[0] = 'Ecuador'
+>>> countries
+['Ecuador', 'Venezuela', 'Colombia', 'Argentna']
+>>> name = 'David'
+>>> name[0]
+D
+>>> name[0] = 'd'
+************************** ERROR **************************
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'str' object does not support item assignment
+************************** ERROR **************************
 
->>> my_name[0]
-C
->>> my_name[-1]
-n
->>> my_name[0:3]
-Cri
->>> my_name[0:3]
-Cri
->>> my_name[3:]
-stian
->>> my_name[::2]
-Cita
->>> my_name[0:8:2]
-Cita
->>> my_name[::-1]
-naitsirC
->>> 
->>> fruit = 'banana'
->>> fruit[:3]
-ban
->>> fruit[3:]
-ana
->>> fruit[3:3]
-'' 
->>> fruit[:]
-banana
->>> fruit[1:-1:2]
-aa
->>> 
->>> long_word = 'ferrocarril'
->>> long_word[1:4]
-err
->>> long_word[1:8]
-errocar
->>> long_word[::-1]
-lirracorref
->>> long_word[:8:3]
-fra
->>> long_word[::2]
-froarl
+
+>>> countries
+['Ecuador', 'Venezuela', 'Colombia', 'Argentna']
+>>> global_countries = countries
+>>>
+>>>
+>>>
+>>> countries
+['Ecuador', 'Venezuela', 'Colombia', 'Argentna']
+>>> global_countries
+['Ecuador', 'Venezuela', 'Colombia', 'Argentna']
+>>> countries[0] = 'Guatemala'
+>>> global_countries
+['Guatemala', 'Venezuela', 'Colombia', 'Argentna']
+>>>
+>>>
+>>>
+>>> import copy
+>>>
+>>>
+>>>
+>>> countries
+['Guatemala', 'Venezuela', 'Colombia', 'Argentna']
+>>> global_countries = None
+>>> global_countries
+None
+>>> countries
+['Guatemala', 'Venezuela', 'Colombia', 'Argentna']
+>>> global_countries = copy.copy(countries)
+>>> countries
+['Guatemala', 'Venezuela', 'Colombia', 'Argentna']
+>>> global_countries
+['Guatemala', 'Venezuela', 'Colombia', 'Argentna']
+>>> countries[0] = 'Honduras'
+>>> countries
+['Honduras', 'Venezuela', 'Colombia', 'Argentna']
+>>> global_countries
+['Guatemala', 'Venezuela', 'Colombia', 'Argentna']
+>>>
+>>>
+>>>
+>>> for country in countries:
+...     print(country)
+...
+Honduras
+Venezuela
+Colombia
+Argentna
