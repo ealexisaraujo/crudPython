@@ -1,4 +1,7 @@
-VALID_COMMANDS = 'C,L,U,D'
+import sys
+
+
+VALID_COMMANDS = 'C,L,U,D,S'
 
 
 clients = 'tomas,juan,'
@@ -18,44 +21,64 @@ def list_clients():
     print(clients)
 
 
-def update_client(client_id, updated_client):
+def update_client():
+    client_name = _get_client_name()
+    updated_name = input('What is the new client name? ')
+    _update_client(client_name, updated_name)
+
+
+def _update_client(client_name, updated_name):
     global clients
 
-    if len(clients) - 1 >= client_id:
-        clients[client_id] = updated_client
+    if client_name in clients:
+        clients = clients.replace(client_name + ',', updated_name + ',')
     else:
         print('Client not in client\'s list')
 
-def delete_client(client_id):
-    global clients
 
-    for idx, client in enumerate(clients):
-        if idx == client_id:
-            del clients[idx] 
-            break
+def delete_client():
+    client_name = _get_client_name()
+    _delete_client(client_name)
+
 
 def search_client(client_name):
-    for client in clients:
-        if client['name'] != client_name:
+    clients_list = clients.split(',')
+
+    for client in clients_list:
+        if client_name != client:
             continue
         else:
             return True
 
-def _get_client_field(field_name, message='What is the client {}?'):
-    field = None
 
-    while not field:
-        field = input(message.format(field_name))
+def _delete_client(client_name):
+    global clients
 
-    return field
+    if client_name in clients:
+        clients = clients.replace(client_name + ',', '')
+    else:
+        print('Client not in client\'s list')
+
 
 def _add_comma():
     global clients
 
     clients += ','
 
+
 def _get_client_name():
-    return input('What is the client name?')
+    client_name = None
+
+    while not client_name:
+        client_name = input('What is the client name?')
+
+        if client_name == 'exit':
+            break
+        
+    if not client_name:
+        sys.exit()
+
+    return client_name
 
 
 def _print_line():
@@ -104,9 +127,9 @@ if __name__ == '__main__':
     elif command == 'D':
         _show_clients_and_execute_command(delete_client)
     elif command == 'S':
-        client_name = _get_client_field('name')
+        client_name = _get_client_name()
         found = search_client(client_name)
-        
+
         if found:
             print('The client is in the client\'s list')
         else:
