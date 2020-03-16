@@ -1,42 +1,56 @@
->>> my_name = 'Cristian'
+>>> productos = {}
+>>> productos['leche'] = 23.50
+>>>
+>>>
+>>>
+>>> rae = {}
+>>> rae['pizza'] = 'La comida más deliciosa del mundo'
+>>> rae
+{'pizza': 'La comida más deliciosa del mundo'}
+>>> rae['pasta'] = 'La comida más sabrosa de Italia'
+>>> rae['pizza']
+La comida más deliciosa del mundo
+>>> rae['pasta']
+La comida más sabrosa de Italia
+>>> rae['helado']
+************************** ERROR **************************
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+KeyError: 'helado'
+************************** ERROR **************************
 
->>> my_name[0]
-C
->>> my_name[-1]
-n
->>> my_name[0:3]
-Cri
->>> my_name[0:3]
-Cri
->>> my_name[3:]
-stian
->>> my_name[::2]
-Cita
->>> my_name[0:8:2]
-Cita
->>> my_name[::-1]
-naitsirC
->>> 
->>> fruit = 'banana'
->>> fruit[:3]
-ban
->>> fruit[3:]
-ana
->>> fruit[3:3]
-'' 
->>> fruit[:]
-banana
->>> fruit[1:-1:2]
-aa
->>> 
->>> long_word = 'ferrocarril'
->>> long_word[1:4]
-err
->>> long_word[1:8]
-errocar
->>> long_word[::-1]
-lirracorref
->>> long_word[:8:3]
-fra
->>> long_word[::2]
-froarl
+
+Para evitar que se salga cuando no encuentra el objeto:
+>>> a = rae.get('helado', None)
+>>> print(a)
+None
+>>> a = rae.get('pizza', None)
+>>> print(a)
+La comida más deliciosa del mundo
+>>>
+>>>
+>>>
+>>> rae.keys()
+dict_keys(['pizza', 'pasta'])
+>>> rae.values()
+dict_values(['La comida más deliciosa del mundo', 'La comida más sabrosa de Italia'])
+>>> rae.items()
+dict_items([('pizza', 'La comida más deliciosa del mundo'), ('pasta', 'La comida más sabrosa de Italia')])
+>>>
+>>>
+>>>
+>>> for key in rae.keys():
+...     print(key)
+...
+pizza
+pasta
+>>> for key in rae.values():
+...     print(key)
+...
+La comida más deliciosa del mundo
+La comida más sabrosa de Italia
+>>> for key in rae.items():
+...     print(key)
+...
+('pizza', 'La comida más deliciosa del mundo')
+('pasta', 'La comida más sabrosa de Italia')
