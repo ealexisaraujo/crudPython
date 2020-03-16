@@ -1,19 +1,10 @@
 import sys
+import csv
+import os
 
-clients = [
-    {
-        'name': 'Juan',
-        'company': 'Maxidespensa',
-        'email': 'Juan@maxi.com',
-        'position': 'Sofware Engineer'
-    },
-    {
-        'name': 'Pedro',
-        'company': 'Google',
-        'email': 'Pedro@google.com',
-        'position': 'UX Designer'
-    },
-]
+CLIENT_SCHEMA = ['name', 'company', 'email', 'position']
+CLIENT_TABLE = '.clients.csv'
+clients = []
 
 
 def create_client(client):
@@ -49,7 +40,7 @@ def update_client(client_id, updated_client):
 def delete_client(client_id):
     global clients
 
-    for idx in enumerate(clients):
+    for idx, client in enumerate(clients):
         if idx == client_id:
             del clients[idx]
             break
@@ -61,6 +52,24 @@ def search_client(client_name):
             continue
         else:
             return True
+
+
+def _initialize_clients_from_storage():
+    with open(CLIENT_TABLE, mode='r') as f:
+        reader = csv.DictReader(f, fieldnames=CLIENT_SCHEMA)
+
+        for row in reader:
+            clients.append(row)
+
+
+def _save_clients_to_storage():
+    tmp_table_name = '{}.tmp'.format(CLIENT_TABLE)
+    with open(tmp_table_name, mode='w') as f:
+        writer = csv.DictWriter(f, fieldnames=CLIENT_SCHEMA)
+        writer.writerows(clients)
+
+        os.remove(CLIENT_TABLE)
+        os.rename(tmp_table_name, CLIENT_TABLE)
 
 
 def _print_welcome():
@@ -110,6 +119,7 @@ def _get_client_name():
 
 
 if __name__ == '__main__':
+    _initialize_clients_from_storage()
     _print_welcome()
     command = input()
     command = command.upper()
@@ -118,7 +128,6 @@ if __name__ == '__main__':
         client = _get_client_from_user()
 
         create_client(client)
-        list_client()
     elif command == 'L':
         list_client()
     elif command == 'U':
@@ -126,12 +135,12 @@ if __name__ == '__main__':
         updated_client = _get_client_from_user()
 
         update_client(client_id, updated_client)
-        list_client()
+
     elif command == 'D':
         client_id = int(_get_client_field('id'))
 
         delete_client(client_id)
-        list_client()
+
     elif command == 'S':
         client_name = _get_client_field('name')
         found = search_client(client_name)
@@ -142,3 +151,5 @@ if __name__ == '__main__':
 
     else:
         print('Invalid command')
+
+    _save_clients_to_storage()
